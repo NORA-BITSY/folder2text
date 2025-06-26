@@ -1,0 +1,2188 @@
+Project Overview
+===============
+
+Project Statistics:
+Total Files: 11
+Total Size: 5.18 MB
+
+File Types:
+  .js: 5 files
+  .json: 2 files
+  no extension: 1 files
+  .md: 1 files
+  .traineddata: 1 files
+  .html: 1 files
+
+Detected Technologies:
+  - HTML
+  - Node.js
+
+Folder Structure (Tree)
+=====================
+Legend: ✓ = Text file, 📄 = OCR-processed file, ✗ = Excluded from output
+
+├── .gitignore (13 B) ✓
+├── README.md (6.05 KB) ✓
+├── cli.js (43 B) ✓
+├── eng.traineddata (4.96 MB) ✗
+├── ignore.js (3.64 KB) ✓
+├── index.js (10.60 KB) ✓
+├── ocr.js (8.27 KB) ✓
+├── package-lock.json (156.01 KB) ✗
+├── package.json (1.09 KB) ✓
+├── public/
+│   └── index.html (24.26 KB) ✓
+└── server.js (14.38 KB) ✓
+
+==============
+
+File Name: .gitignore
+Size: 13 B
+Code:
+node_modules/
+-------- [ Separator ] ------
+
+File Name: README.md
+Size: 6.05 KB
+Code:
+# folder2text
+
+Convert entire project directories into a single, well-organized text file. Perfect for documentation, AI context sharing, and project analysis.
+
+## Overview
+
+`folder2text` is a command-line utility that transforms your project directory into a comprehensive text document. It generates a complete overview including project statistics, file types, detected technologies, and a full directory tree structure, along with the contents of all text-based files.
+
+## Features
+
+- 📊 **Project Statistics**: Total file count and size analysis  
+- 🌳 **Directory Tree**: Visual representation of your project structure  
+- 🔍 **Technology Detection**: Automatic identification of frameworks and languages  
+- 📝 **Content Extraction**: Intelligent handling of text-based files  
+- �️ **OCR Processing**: Extract text from images and scanned documents using advanced OCR
+- 📄 **PDF Support**: Direct text extraction from PDFs and OCR for scanned PDFs
+- �🚫 **Smart Filtering**: Automatic skipping of:  
+  - Binary files (with OCR support for images/PDFs)
+  - Configuration files (`package-lock.json`, `.env`, etc.)  
+  - Common directories (`node_modules`, `.git`, etc.)  
+  - Media files (videos, audio, etc.)
+
+- 🔧**Manual Filtering**: Option for Manually filtering Specific path and patterns
+  - 📄 **Output File**: Customizable output file name
+  - 🔍 **Filtering**: Option to filter specific paths or patterns
+  - ⚙️ **OCR Control**: Enable/disable OCR processing as needed
+
+## Installation
+
+### NPM (Node.js)
+
+```bash
+npm install -g folder2text
+```
+
+**Note**: OCR functionality requires additional system dependencies. The application will automatically handle OCR library installation, but for optimal performance on some systems, you may need to install Tesseract OCR:
+
+**macOS**:
+```bash
+brew install tesseract
+```
+
+**Ubuntu/Debian**:
+```bash
+sudo apt-get install tesseract-ocr
+```
+
+**Windows**:
+Download and install from [Tesseract GitHub releases](https://github.com/tesseract-ocr/tesseract/releases)
+
+## Usage
+
+### Command Line Interface
+
+```bash
+folder2text /path/to/folder
+```
+
+### OCR Options
+
+```bash
+# Enable OCR processing (default)
+folder2text /path/to/folder
+
+# Disable OCR processing
+folder2text /path/to/folder --no-ocr
+
+# Process with custom filters and OCR
+folder2text /path/to/folder --filter "tests,temp" 
+```
+
+### Web GUI Interface
+
+Start the web server:
+
+```bash
+npm run web
+```
+
+Then open your browser to `http://localhost:3000` for a beautiful web interface where you can:
+
+- 📁 **Browse Directories**: Navigate through your file system with an intuitive folder browser
+- ⚙️ **Configure Settings**: Set output file names, custom filters, and OCR options
+- 🎯 **Visual Selection**: Click to select folders and see real-time previews
+- 🖼️ **OCR Control**: Toggle OCR processing on/off with a simple checkbox
+- 📊 **Live Results**: View processing results including OCR statistics and download generated files instantly
+- 📄 **Enhanced Metadata**: Detailed information about OCR confidence, extracted text length, and processing methods
+
+The output file will contain:
+
+- Project overview with statistics  
+- List of file types and their counts  
+- Detected technologies  
+- Complete directory tree structure  
+- Contents of all text-based files  
+- OCR-extracted text from images and PDFs with confidence scores
+- Enhanced metadata for processed files  
+
+### Example output structure:
+
+```bash
+folder2text /path/to/folder
+```
+
+### Filter out specific folders
+```folder2text /path/to/folder --filter "tests,docs"```
+
+### Filter with path patterns
+```folder2text /path/to/folder --filter "src/tests,src/docs"```
+
+### Combined with output file name
+```folder2text /path/to/folder output.txt --filter "tests,examples,temp"```
+
+The output will look like:
+
+```text
+Project Overview
+===============
+
+Project Statistics:
+Total Files: 42
+Total Size: 1.25 MB
+OCR-Processed Files: 8
+
+File Types:
+  .js: 15 files
+  .json: 3 files
+  .md: 2 files
+  .pdf: 5 files
+  .png: 3 files
+  ...
+
+Detected Technologies:
+  - TypeScript
+  - React
+  - OCR Processing
+  ...
+
+Folder Structure (Tree)
+=====================
+├── src
+│   ├── components
+│   └── utils
+├── docs
+│   ├── manual.pdf (2.1 MB) 📄
+│   └── screenshot.png (1.5 MB) 📄
+
+...
+
+OCR Processing Summary
+=====================
+Total OCR Files: 8
+Successfully Processed: 7
+Failed Processing: 1
+Average Confidence: 87%
+Total Text Extracted: 15,247 characters
+```
+
+## Use Cases
+
+- 📚 Creating comprehensive project documentation with visual content
+- 🤖 Sharing project context with AI/LLM systems including images and PDFs
+- 📊 Project analysis and auditing with multimedia content processing
+- 👥 Code review and collaboration with complete project visualization
+- 📦 Project archival and documentation including scanned documents
+- 🔍 Digital document processing and text extraction from legacy files
+- 📋 Converting mixed-media projects to searchable text format  
+
+## License
+
+This project is licensed under **MIT with Commons Clause**, which means:
+
+- ✅ Free for personal and open-source use  
+- ✅ Can be forked and modified  
+- ✅ Can be used as a reference for other open-source projects  
+- ❌ Cannot be used for commercial purposes without permission  
+
+## About the Author
+
+Hi! I'm **Nidal Siddique Oritro**, a developer passionate about creating tools that make developers' lives easier. I enjoy building utilities that bridge the gap between traditional development workflows and modern AI-powered development.  
+
+Learn more about me and my projects at [iam.ioritro.com](https://iam.ioritro.com).
+
+## Contributing
+
+Contributions are welcome! Feel free to:
+
+1. Fork the repository  
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)  
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)  
+4. Push to the branch (`git push origin feature/AmazingFeature`)  
+5. Open a Pull Request  
+
+## Support
+
+If you encounter any issues or have questions:
+
+- Check the [Issues page](https://github.com/oritromax/folder2text/issues)  
+- Open a new issue if needed  
+- Join the discussion  
+
+
+-------- [ Separator ] ------
+
+File Name: cli.js
+Size: 43 B
+Code:
+#!/usr/bin/env node
+
+require('./index.js');
+-------- [ Separator ] ------
+
+File Name: ignore.js
+Size: 3.64 KB
+Code:
+const fs = require('fs');
+const path = require('path');
+
+const skipContentFiles = [
+  // Config and lock files
+  'package-lock.json',
+  'yarn.lock',
+  '.prettierrc',
+  '.eslintrc',
+  '.eslintrc.js',
+  '.eslintrc.json',
+  '.babelrc',
+  '.babelrc.js',
+  '.babelrc.json',
+  'tsconfig.json',
+  'webpack.config.js',
+  'jest.config.js',
+  '.env',
+  '.env.local',
+  '.env.development',
+  '.env.production',
+  '.env.test',
+  'composer.lock'
+];
+
+const skipTraversalFolders = [
+  // Common folders
+  'node_modules',
+  'vendor',
+  '.git',
+  '.idea',
+  '.vscode',
+  '.vs',
+  'dist',
+  'build',
+  'coverage',
+  
+  // Symfony specific folders
+  'var/cache',
+  'var/log',
+  'var/sessions',
+  'var/tmp',
+  'public/bundles',
+  
+  // Laravel specific folders
+  'storage/app',
+  'storage/framework/cache',
+  'storage/framework/sessions',
+  'storage/framework/testing',
+  'storage/framework/views',
+  'storage/logs',
+  'bootstrap/cache',
+  'public/storage',
+
+  // JavaScript framework folders
+  '.next',
+  '.nuxt',
+  'out',
+  '.svelte-kit',
+  '.angular',
+  
+  // Build and cache directories
+  '.cache',
+  '.parcel-cache',
+  '.webpack',
+  '.turbo',
+  '.vite',
+  'temp',
+  'tmp',
+  'cache',
+  '.phpunit.cache',
+  '.php-cs-fixer.cache',
+  
+  // Test folders
+  '.nyc_output',
+  'cypress/videos',
+  'cypress/screenshots',
+  '.cypress-cache',
+  
+  // Dependencies and builds
+  'public/build',
+  'public/hot',
+  'public/css',
+  'public/js',
+  'public/mix-manifest.json'
+];
+
+// OCR-supported file types - these will be processed with OCR instead of being skipped
+const ocrSupportedExtensions = [
+  'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'pdf'
+];
+
+const skipContentExtensions = [
+  // Vector images and design files (not suitable for OCR)
+  'svg', 'ico', 'psd', 'ai', 'eps', 'raw', 'xcf',
+  
+  // Known binary extensions
+  'exe', 'dll', 'so', 'dylib', 'bin', 'obj',
+  'db', 'sqlite', 'sqlite3', 'mdb',
+  'zip', 'tar', 'gz', '7z', 'rar',
+  
+  // Office documents (future enhancement could add OCR support)
+  'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',
+  
+  // Fonts and other assets
+  'ttf', 'otf', 'woff', 'woff2',
+  
+  // Media files
+  'mp4', 'avi', 'mov', 'wmv', 'flv', 'mp3', 'wav', 'flac'
+];
+
+function isBinaryFile(filePath) {
+  try {
+    const buffer = Buffer.alloc(512);
+    const fd = fs.openSync(filePath, 'r');
+    const bytesRead = fs.readSync(fd, buffer, 0, 512, 0);
+    fs.closeSync(fd);
+
+    for (let i = 0; i < bytesRead; i++) {
+      if (buffer[i] === 0) return true;
+    }
+
+    return false;
+  } catch (error) {
+    console.error(`Error checking binary file ${filePath}:`, error.message);
+    return false;
+  }
+}
+
+function shouldSkipTraversal(filepath) {
+  const normalizedPath = filepath.replace(/\\/g, '/');
+  
+  return skipTraversalFolders.some(pattern => {
+    const regexPattern = pattern.includes('/') 
+      ? pattern.replace(/\//g, '[/\\\\]') 
+      : `(^|[/\\\\])${pattern}($|[/\\\\])`; 
+    
+    return new RegExp(regexPattern).test(normalizedPath);
+  });
+}
+
+function shouldSkipContent(filepath) {
+  const basename = path.basename(filepath);
+  const extension = path.extname(filepath).toLowerCase().replace('.', '');
+  
+  // Don't skip OCR-supported files
+  if (ocrSupportedExtensions.includes(extension)) {
+    return false;
+  }
+  
+  return skipContentFiles.includes(basename) || 
+         skipContentExtensions.includes(extension) || 
+         isBinaryFile(filepath);
+}
+
+function supportsOCR(filepath) {
+  const extension = path.extname(filepath).toLowerCase().replace('.', '');
+  return ocrSupportedExtensions.includes(extension);
+}
+
+module.exports = { 
+  shouldSkipTraversal, 
+  shouldSkipContent,
+  supportsOCR,
+  skipContentFiles,
+  skipTraversalFolders,
+  skipContentExtensions,
+  ocrSupportedExtensions
+};
+-------- [ Separator ] ------
+
+File Name: index.js
+Size: 10.60 KB
+Code:
+const fs = require('fs').promises;
+const path = require('path');
+const { program } = require('commander');
+const { shouldSkipTraversal, shouldSkipContent, supportsOCR } = require('./ignore');
+const OCRService = require('./ocr');
+
+program
+  .argument('<folderPath>', 'Path to the target folder')
+  .argument('[outputName]', 'Output file name (optional)')
+  .option('-f, --filter <patterns>', 'Additional patterns to filter (separated by commas)')
+  .option('--no-ocr', 'Disable OCR processing for images and PDFs')
+  .parse();
+
+const [folderPath] = program.args;
+const options = program.opts();
+const additionalFilters = options.filter ? options.filter.split(',').map(p => p.trim()) : [];
+const enableOCR = options.ocr !== false; // OCR enabled by default
+
+let ocrService = null;
+
+const originalSkipTraversal = shouldSkipTraversal;
+const shouldSkipTraversalWithFilters = (filepath) => {
+  if (originalSkipTraversal(filepath)) {
+    return true;
+  }
+
+  const normalizedPath = filepath.replace(/\\/g, '/');
+  return additionalFilters.some(pattern => {
+    const regexPattern = pattern.includes('/') 
+      ? pattern.replace(/\//g, '[/\\\\]') 
+      : `(^|[/\\\\])${pattern}($|[/\\\\])`;
+    
+    return new RegExp(regexPattern).test(normalizedPath);
+  });
+};
+
+let totalFiles = 0;
+let totalSize = 0;
+let fileTypes = {};
+let technologies = new Set();
+let ocrStats = {
+  totalOCRFiles: 0,
+  successfulOCR: 0,
+  failedOCR: 0,
+  averageConfidence: 0,
+  totalTextExtracted: 0
+};
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
+  return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+}
+
+async function generateTree(dir, prefix = '', includedFiles = new Set()) {
+  let result = '';
+  const items = await fs.readdir(dir);
+  
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const itemPath = path.join(dir, item);
+    const stats = await fs.stat(itemPath);
+    
+    if (shouldSkipTraversalWithFilters(itemPath)) continue;
+    
+    const isLast = i === items.length - 1;
+    const connector = isLast ? '└── ' : '├── ';
+    const newPrefix = isLast ? '    ' : '│   ';
+    
+    if (stats.isFile()) {
+      const size = formatSize(stats.size);
+      const isIncluded = !shouldSkipContent(itemPath);
+      const isOCRFile = supportsOCR(itemPath);
+      
+      let indicator = ' ✗';
+      if (isIncluded) {
+        indicator = isOCRFile ? ' 📄' : ' ✓';  // Special indicator for OCR files
+      }
+      
+      result += `${prefix}${connector}${item} (${size})${indicator}\n`;
+    } else {
+      result += `${prefix}${connector}${item}/\n`;
+      result += await generateTree(itemPath, prefix + newPrefix, includedFiles);
+    }
+  }
+  return result;
+}
+
+async function getAllFiles(dir) {
+  const fileList = [];
+  const items = await fs.readdir(dir);
+  
+  for (const item of items) {
+    const fullPath = path.join(dir, item);
+    if (shouldSkipTraversalWithFilters(fullPath)) continue;
+    
+    const stats = await fs.stat(fullPath);
+    
+    if (stats.isDirectory()) {
+      const subFiles = await getAllFiles(fullPath);
+      fileList.push(...subFiles);
+    } else {
+      // Track all files in stats, regardless of content inclusion
+      const ext = path.extname(fullPath).toLowerCase();
+      fileTypes[ext] = (fileTypes[ext] || 0) + 1;
+      
+      // Technology detection (enhanced with OCR file recognition)
+      if (['.ts', '.tsx'].includes(ext)) technologies.add('TypeScript');
+      if (['.jsx', '.tsx'].includes(ext)) technologies.add('React');
+      if (ext === '.vue') technologies.add('Vue.js');
+      if (ext === '.py') technologies.add('Python');
+      if (ext === '.php') technologies.add('PHP');
+      if (ext === '.java') technologies.add('Java');
+      if (ext === '.go') technologies.add('Go');
+      if (ext === '.rs') technologies.add('Rust');
+      if (ext === '.swift') technologies.add('Swift');
+      if (['.rb'].includes(ext)) technologies.add('Ruby');
+      if (['.c', '.cpp', '.cc', '.cxx'].includes(ext)) technologies.add('C/C++');
+      if (['.cs'].includes(ext)) technologies.add('C#');
+      if (['.html', '.htm'].includes(ext)) technologies.add('HTML');
+      if (['.css', '.scss', '.sass', '.less'].includes(ext)) technologies.add('CSS');
+      if (path.basename(fullPath) === 'package.json') technologies.add('Node.js');
+      if (path.basename(fullPath) === 'requirements.txt') technologies.add('Python');
+      if (path.basename(fullPath) === 'Gemfile') technologies.add('Ruby');
+      if (path.basename(fullPath) === 'composer.json') technologies.add('PHP');
+      
+      // OCR file detection
+      if (supportsOCR(fullPath)) {
+        technologies.add('OCR Processing');
+        ocrStats.totalOCRFiles++;
+      }
+      
+      totalFiles++;
+      totalSize += stats.size;
+    
+      if (!shouldSkipContent(fullPath)) {
+        fileList.push({
+          path: fullPath,
+          size: stats.size,
+          extension: ext,
+          isOCRFile: supportsOCR(fullPath)
+        });
+      }
+    }
+  }
+  return fileList;
+}
+
+async function main() {
+  try {
+    console.log('Starting to process directory:', folderPath);
+    
+    const stats = await fs.stat(folderPath);
+    if (!stats.isDirectory()) {
+      throw new Error('Provided path is not a directory');
+    }
+
+    // Initialize OCR service if enabled
+    if (enableOCR) {
+      console.log('Initializing OCR service...');
+      ocrService = new OCRService();
+    }
+
+    const date = new Date();
+    const dateStr = `${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}${date.getFullYear()}`;
+    const timestamp = Math.floor(date.getTime() / 1000);
+    
+    const folderName = path.basename(folderPath);
+    const outputFileName = program.args[1] || `${folderName}_${dateStr}_${timestamp}.txt`;
+    
+    console.log('Collecting files...');
+    const files = await getAllFiles(folderPath);
+    const includedFiles = new Set(files.map(f => f.path));
+    
+    console.log('Generating tree structure...');
+    const treeStructure = await generateTree(folderPath, '', includedFiles);
+    
+    console.log(`Found ${files.length} files`);
+    if (enableOCR && ocrStats.totalOCRFiles > 0) {
+      console.log(`Found ${ocrStats.totalOCRFiles} files that support OCR processing`);
+    }
+    
+    let output = 'Project Overview\n===============\n\n';
+    output += `Project Statistics:\n`;
+    output += `Total Files: ${totalFiles}\n`;
+    output += `Total Size: ${formatSize(totalSize)}\n`;
+    
+    if (enableOCR && ocrStats.totalOCRFiles > 0) {
+      output += `OCR-Processed Files: ${ocrStats.totalOCRFiles}\n`;
+    }
+    output += '\n';
+    
+    output += `File Types:\n`;
+    Object.entries(fileTypes)
+      .sort(([, a], [, b]) => b - a)
+      .forEach(([ext, count]) => {
+        output += `  ${ext || 'no extension'}: ${count} files\n`;
+      });
+    
+    output += `\nDetected Technologies:\n`;
+    Array.from(technologies).sort().forEach(tech => {
+      output += `  - ${tech}\n`;
+    });
+    
+    output += '\nFolder Structure (Tree)\n=====================\n';
+    output += 'Legend: ✓ = Text file, 📄 = OCR-processed file, ✗ = Excluded from output\n\n';
+    output += treeStructure;
+    output += '\n==============\n';
+    
+    console.log('Processing individual files...');
+    let confidenceSum = 0;
+    let ocrCount = 0;
+    
+    for (const file of files) {
+      try {
+        const relPath = path.relative(folderPath, file.path);
+        
+        if (file.isOCRFile && enableOCR && ocrService) {
+          // Process with OCR
+          console.log(`Performing OCR on: ${relPath}`);
+          const ocrResult = await ocrService.extractText(file.path);
+          const metadata = ocrService.getFileMetadata(file.path, ocrResult);
+          
+          if (ocrResult.confidence > 0) {
+            ocrStats.successfulOCR++;
+            confidenceSum += ocrResult.confidence;
+            ocrCount++;
+          } else {
+            ocrStats.failedOCR++;
+          }
+          
+          ocrStats.totalTextExtracted += ocrResult.text.length;
+          
+          output += `\nFile Name: ${relPath}\n`;
+          output += `Size: ${formatSize(file.size)}\n`;
+          output += `Processing Method: ${ocrResult.method}\n`;
+          output += `OCR Confidence: ${ocrResult.confidence}%\n`;
+          output += `Extracted Text Length: ${ocrResult.text.length} characters\n`;
+          output += `Word Count: ${metadata.wordCount} words\n`;
+          
+          if (metadata.pages) {
+            output += `Total Pages: ${metadata.pages}\n`;
+          }
+          if (metadata.processedPages) {
+            output += `Processed Pages: ${metadata.processedPages}\n`;
+          }
+          
+          output += 'Extracted Content:\n';
+          output += ocrResult.text || '[No text extracted]';
+          output += '\n-------- [ Separator ] ------\n';
+          
+        } else {
+          // Process as regular text file
+          const content = await fs.readFile(file.path, 'utf8');
+          
+          output += `\nFile Name: ${relPath}\n`;
+          output += `Size: ${formatSize(file.size)}\n`;
+          output += 'Code:\n';
+          output += content;
+          output += '\n-------- [ Separator ] ------\n';
+        }
+      } catch (error) {
+        console.error(`Error reading file ${file.path}:`, error.message);
+      }
+    }
+    
+    // Add OCR statistics to output
+    if (enableOCR && ocrStats.totalOCRFiles > 0) {
+      ocrStats.averageConfidence = ocrCount > 0 ? Math.round(confidenceSum / ocrCount) : 0;
+      
+      output += '\n\nOCR Processing Summary\n=====================\n';
+      output += `Total OCR Files: ${ocrStats.totalOCRFiles}\n`;
+      output += `Successfully Processed: ${ocrStats.successfulOCR}\n`;
+      output += `Failed Processing: ${ocrStats.failedOCR}\n`;
+      output += `Average Confidence: ${ocrStats.averageConfidence}%\n`;
+      output += `Total Text Extracted: ${formatSize(ocrStats.totalTextExtracted)} characters\n`;
+    }
+    
+    console.log('Writing output file...');
+    await fs.writeFile(outputFileName, output);
+    console.log(`Output written to ${outputFileName}`);
+    console.log(`Total files processed: ${files.length}`);
+    console.log(`Total size: ${formatSize(totalSize)}`);
+    
+    if (enableOCR && ocrStats.totalOCRFiles > 0) {
+      console.log(`OCR files processed: ${ocrStats.successfulOCR}/${ocrStats.totalOCRFiles}`);
+      console.log(`Average OCR confidence: ${ocrStats.averageConfidence}%`);
+    }
+    
+    // Clean up OCR service
+    if (ocrService) {
+      await ocrService.terminateWorker();
+    }
+    
+  } catch (error) {
+    console.error('Error:', error.message);
+    
+    // Clean up OCR service on error
+    if (ocrService) {
+      await ocrService.terminateWorker();
+    }
+    
+    process.exit(1);
+  }
+}
+
+main();
+-------- [ Separator ] ------
+
+File Name: ocr.js
+Size: 8.27 KB
+Code:
+const Tesseract = require('tesseract.js');
+const pdfParse = require('pdf-parse');
+const pdf2pic = require('pdf2pic');
+const Jimp = require('jimp');
+const sharp = require('sharp');
+const fs = require('fs').promises;
+const path = require('path');
+
+class OCRService {
+  constructor() {
+    this.tesseractWorker = null;
+    this.initializeWorker();
+  }
+
+  async initializeWorker() {
+    try {
+      this.tesseractWorker = await Tesseract.createWorker('eng');
+      console.log('OCR worker initialized successfully');
+    } catch (error) {
+      console.error('Failed to initialize OCR worker:', error.message);
+      this.tesseractWorker = null;
+    }
+  }
+
+  async terminateWorker() {
+    if (this.tesseractWorker) {
+      await this.tesseractWorker.terminate();
+      this.tesseractWorker = null;
+    }
+  }
+
+  // Check if file is an image that can be processed
+  isImage(filePath) {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.tiff', '.webp'];
+    const ext = path.extname(filePath).toLowerCase();
+    return imageExtensions.includes(ext);
+  }
+
+  // Check if file is a PDF
+  isPDF(filePath) {
+    return path.extname(filePath).toLowerCase() === '.pdf';
+  }
+
+  // Check if file supports OCR processing
+  supportsOCR(filePath) {
+    return this.isImage(filePath) || this.isPDF(filePath);
+  }
+
+  // Preprocess image for better OCR accuracy
+  async preprocessImage(imagePath) {
+    try {
+      const image = await Jimp.read(imagePath);
+      
+      // Apply preprocessing: convert to grayscale, increase contrast, normalize
+      image
+        .greyscale()
+        .contrast(0.3)
+        .normalize();
+
+      // Save processed image to temp location
+      const tempPath = path.join(path.dirname(imagePath), 'temp_' + path.basename(imagePath));
+      await image.writeAsync(tempPath);
+      
+      return tempPath;
+    } catch (error) {
+      console.warn(`Image preprocessing failed for ${imagePath}:`, error.message);
+      return imagePath; // Return original if preprocessing fails
+    }
+  }
+
+  // Extract text from image using OCR
+  async extractTextFromImage(imagePath) {
+    if (!this.tesseractWorker) {
+      console.warn('OCR worker not available, attempting to reinitialize...');
+      await this.initializeWorker();
+      if (!this.tesseractWorker) {
+        throw new Error('OCR worker not initialized');
+      }
+    }
+
+    try {
+      console.log(`Processing image: ${path.basename(imagePath)}`);
+      
+      // Preprocess image for better accuracy
+      const processedImagePath = await this.preprocessImage(imagePath);
+      
+      // Perform OCR
+      const { data: { text, confidence } } = await this.tesseractWorker.recognize(processedImagePath);
+      
+      // Clean up temp file if it was created
+      if (processedImagePath !== imagePath) {
+        try {
+          await fs.unlink(processedImagePath);
+        } catch (e) {
+          // Ignore cleanup errors
+        }
+      }
+
+      return {
+        text: text.trim(),
+        confidence: Math.round(confidence || 0),
+        method: 'OCR (Tesseract)',
+        metadata: {
+          originalFile: path.basename(imagePath),
+          processingTime: new Date().toISOString()
+        }
+      };
+    } catch (error) {
+      console.error(`OCR failed for ${imagePath}:`, error.message);
+      return {
+        text: `[OCR Error: ${error.message}]`,
+        confidence: 0,
+        method: 'OCR (Failed)',
+        metadata: {
+          originalFile: path.basename(imagePath),
+          error: error.message
+        }
+      };
+    }
+  }
+
+  // Extract text from PDF (try text extraction first, then OCR if needed)
+  async extractTextFromPDF(pdfPath) {
+    try {
+      console.log(`Processing PDF: ${path.basename(pdfPath)}`);
+      
+      // First, try to extract text directly from PDF
+      const dataBuffer = await fs.readFile(pdfPath);
+      const pdfData = await pdfParse(dataBuffer);
+      
+      if (pdfData.text && pdfData.text.trim().length > 50) {
+        // PDF has extractable text
+        return {
+          text: pdfData.text.trim(),
+          confidence: 100,
+          method: 'PDF Text Extraction',
+          metadata: {
+            originalFile: path.basename(pdfPath),
+            pages: pdfData.numpages,
+            extractedDirectly: true,
+            processingTime: new Date().toISOString()
+          }
+        };
+      } else {
+        // PDF appears to be scanned, use OCR
+        return await this.extractTextFromScannedPDF(pdfPath);
+      }
+    } catch (error) {
+      console.error(`PDF processing failed for ${pdfPath}:`, error.message);
+      return {
+        text: `[PDF Processing Error: ${error.message}]`,
+        confidence: 0,
+        method: 'PDF Processing (Failed)',
+        metadata: {
+          originalFile: path.basename(pdfPath),
+          error: error.message
+        }
+      };
+    }
+  }
+
+  // Extract text from scanned PDF using OCR
+  async extractTextFromScannedPDF(pdfPath) {
+    try {
+      console.log(`Performing OCR on scanned PDF: ${path.basename(pdfPath)}`);
+      
+      // Convert PDF pages to images
+      const convert = pdf2pic.fromPath(pdfPath, {
+        density: 300,           // Higher DPI for better OCR
+        saveFilename: "page",
+        savePath: path.dirname(pdfPath),
+        format: "png",
+        width: 2480,           // High resolution
+        height: 3508
+      });
+
+      // Get total pages
+      const dataBuffer = await fs.readFile(pdfPath);
+      const pdfData = await pdfParse(dataBuffer);
+      const totalPages = pdfData.numpages;
+
+      let allText = '';
+      let totalConfidence = 0;
+      const processedPages = [];
+
+      // Process each page
+      for (let pageNum = 1; pageNum <= Math.min(totalPages, 20); pageNum++) { // Limit to 20 pages for performance
+        try {
+          const result = await convert(pageNum);
+          const imagePath = result.path;
+          
+          // Perform OCR on the page image
+          const ocrResult = await this.extractTextFromImage(imagePath);
+          
+          if (ocrResult.text && ocrResult.text.length > 10) {
+            allText += `\n--- Page ${pageNum} ---\n${ocrResult.text}\n`;
+            totalConfidence += ocrResult.confidence;
+            processedPages.push(pageNum);
+          }
+
+          // Clean up page image
+          try {
+            await fs.unlink(imagePath);
+          } catch (e) {
+            // Ignore cleanup errors
+          }
+          
+        } catch (pageError) {
+          console.warn(`Failed to process page ${pageNum}: ${pageError.message}`);
+        }
+      }
+
+      const averageConfidence = processedPages.length > 0 
+        ? Math.round(totalConfidence / processedPages.length) 
+        : 0;
+
+      return {
+        text: allText.trim(),
+        confidence: averageConfidence,
+        method: 'PDF OCR (Tesseract)',
+        metadata: {
+          originalFile: path.basename(pdfPath),
+          totalPages: totalPages,
+          processedPages: processedPages.length,
+          pagesProcessed: processedPages,
+          processingTime: new Date().toISOString()
+        }
+      };
+
+    } catch (error) {
+      console.error(`PDF OCR failed for ${pdfPath}:`, error.message);
+      return {
+        text: `[PDF OCR Error: ${error.message}]`,
+        confidence: 0,
+        method: 'PDF OCR (Failed)',
+        metadata: {
+          originalFile: path.basename(pdfPath),
+          error: error.message
+        }
+      };
+    }
+  }
+
+  // Main method to extract text from any supported file
+  async extractText(filePath) {
+    if (!this.supportsOCR(filePath)) {
+      throw new Error('File type not supported for OCR');
+    }
+
+    if (this.isImage(filePath)) {
+      return await this.extractTextFromImage(filePath);
+    } else if (this.isPDF(filePath)) {
+      return await this.extractTextFromPDF(filePath);
+    }
+
+    throw new Error('Unknown file type');
+  }
+
+  // Get enhanced metadata for OCR-processed files
+  getFileMetadata(filePath, ocrResult) {
+    const stats = require('fs').statSync(filePath);
+    const ext = path.extname(filePath).toLowerCase();
+    
+    return {
+      fileName: path.basename(filePath),
+      filePath: filePath,
+      fileSize: stats.size,
+      fileType: ext,
+      lastModified: stats.mtime,
+      ocrMethod: ocrResult.method,
+      ocrConfidence: ocrResult.confidence,
+      textLength: ocrResult.text.length,
+      wordCount: ocrResult.text.split(/\s+/).filter(word => word.length > 0).length,
+      ...ocrResult.metadata
+    };
+  }
+}
+
+module.exports = OCRService;
+
+-------- [ Separator ] ------
+
+File Name: package.json
+Size: 1.09 KB
+Code:
+{
+  "name": "folder2text",
+  "version": "0.0.6",
+  "description": "Convert entire project directories to a single text file, perfect for documentation and AI context sharing",
+  "main": "index.js",
+  "bin": {
+    "folder2text": "./cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oritromax/folder2text.git"
+  },
+  "keywords": [
+    "folder",
+    "text",
+    "conversion",
+    "ai",
+    "llm",
+    "documentation",
+    "project-analysis"
+  ],
+  "author": "Nidal Siddique Oritro",
+  "license": "MIT AND Commons Clause",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "express": "^4.21.2",
+    "fs-extra": "^11.2.0",
+    "jimp": "^1.6.0",
+    "pdf-parse": "^1.1.1",
+    "pdf2pic": "^3.2.0",
+    "sharp": "^0.34.2",
+    "tesseract.js": "^6.0.1"
+  },
+  "bugs": {
+    "url": "https://github.com/oritromax/folder2text/issues"
+  },
+  "homepage": "https://github.com/oritromax/folder2text#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
+
+-------- [ Separator ] ------
+
+File Name: public/index.html
+Size: 24.26 KB
+Code:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>folder2text - Web GUI</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            padding: 40px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .file-browser {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        .folder-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f1f3f4;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .folder-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .folder-item.selected {
+            background-color: #e3f2fd;
+            border-left: 4px solid #667eea;
+        }
+
+        .filter-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .filter-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .filter-tag .remove {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .result-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .result-section.show {
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <i class="fas fa-folder-open"></i>
+                folder2text
+            </h1>
+            <p>Convert entire project directories into organized text files with a beautiful web interface</p>
+        </div>
+
+        <div class="main-content">
+            <!-- Features Section -->
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h4>Project Statistics</h4>
+                    <p>Total file count and size analysis</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sitemap"></i>
+                    <h4>Directory Tree</h4>
+                    <p>Visual representation of project structure</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-code"></i>
+                    <h4>Technology Detection</h4>
+                    <p>Automatic identification of frameworks</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-filter"></i>
+                    <h4>Smart Filtering</h4>
+                    <p>Intelligent file and directory filtering</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-image"></i>
+                    <h4>OCR Processing</h4>
+                    <p>Extract text from images and scanned PDFs</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h4>PDF Support</h4>
+                    <p>Direct text extraction and OCR for scanned PDFs</p>
+                </div>
+            </div>
+
+            <!-- Form Section -->
+            <div class="form-section">
+                <h3><i class="fas fa-cog"></i> Configuration</h3>
+                
+                <div class="form-group">
+                    <label for="folderPath">Select Folder:</label>
+                    <div class="file-browser" id="fileBrowser">
+                        <div class="breadcrumb" id="breadcrumb">Loading...</div>
+                        <div class="quick-shortcuts" id="quickShortcuts" style="background: #f1f3f4; padding: 10px; border-bottom: 1px solid #e9ecef; display: none;">
+                            <small style="color: #666; font-weight: 600;">Quick Access:</small>
+                            <div style="margin-top: 5px; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <button type="button" class="btn btn-sm" style="padding: 5px 10px; font-size: 12px; background: #e9ecef; color: #495057;" onclick="navigateToFolder(getHomeDirectory())">
+                                    <i class="fas fa-home"></i> Home
+                                </button>
+                                <button type="button" class="btn btn-sm" style="padding: 5px 10px; font-size: 12px; background: #e9ecef; color: #495057;" onclick="navigateToFolder(getDesktopDirectory())">
+                                    <i class="fas fa-desktop"></i> Desktop
+                                </button>
+                                <button type="button" class="btn btn-sm" style="padding: 5px 10px; font-size: 12px; background: #e9ecef; color: #495057;" onclick="navigateToFolder(getDocumentsDirectory())">
+                                    <i class="fas fa-file-alt"></i> Documents
+                                </button>
+                            </div>
+                        </div>
+                        <div id="folderList">Loading directories...</div>
+                    </div>
+                    <input type="hidden" id="selectedPath" />
+                    <small style="color: #666; margin-top: 5px; display: block;">
+                        Click on a folder to select it for processing, or use the arrow button to navigate into it.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label for="outputName">Output File Name (optional):</label>
+                    <input type="text" id="outputName" class="form-control" placeholder="Leave empty for auto-generated name">
+                </div>
+
+                <div class="form-group">
+                    <label for="filterInput">Additional Filters:</label>
+                    <input type="text" id="filterInput" class="form-control" placeholder="Enter folder/file patterns to exclude (press Enter to add)">
+                    <small style="color: #666; margin-top: 5px; display: block;">
+                        Examples: tests, docs, src/temp, *.log
+                    </small>
+                    <div class="filter-tags" id="filterTags"></div>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="enableOCR" checked style="margin-right: 8px;">
+                        Enable OCR Processing
+                    </label>
+                    <small style="color: #666; margin-top: 5px; display: block;">
+                        Extract text from images (JPG, PNG, etc.) and PDFs using OCR technology. This may increase processing time.
+                    </small>
+                </div>
+
+                <button type="button" class="btn btn-primary" id="processBtn" onclick="processFolder()">
+                    <i class="fas fa-play"></i> Generate Text File
+                </button>
+            </div>
+
+            <!-- Loading Section -->
+            <div class="loading" id="loadingSection" style="display: none;">
+                <div class="spinner"></div>
+                <p>Processing your folder... This may take a few moments.</p>
+                <p><small>OCR processing can take additional time for images and PDFs.</small></p>
+            </div>
+
+            <!-- Result Section -->
+            <div class="result-section" id="resultSection">
+                <h3><i class="fas fa-check-circle"></i> Processing Complete!</h3>
+                <div id="resultContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentPath = '';
+        let selectedPath = '';
+        let filters = [];
+        let homeDirectory = '';
+
+        // Get common directory paths
+        function getHomeDirectory() {
+            return homeDirectory;
+        }
+
+        function getDesktopDirectory() {
+            return homeDirectory + '/Desktop';
+        }
+
+        function getDocumentsDirectory() {
+            return homeDirectory + '/Documents';
+        }
+
+        // Initialize the file browser
+        async function initFileBrowser() {
+            try {
+                const response = await fetch('/api/browse');
+                const data = await response.json();
+                currentPath = data.currentPath;
+                homeDirectory = data.currentPath; // Store home directory
+                updateFileBrowser(data);
+                
+                // Show quick shortcuts after first load
+                document.getElementById('quickShortcuts').style.display = 'block';
+            } catch (error) {
+                document.getElementById('folderList').innerHTML = 
+                    '<div style="padding: 20px; color: #721c24;">Error loading directories: ' + error.message + '</div>';
+            }
+        }
+
+        // Update file browser display
+        function updateFileBrowser(data) {
+            // Update breadcrumb with better formatting
+            const breadcrumb = document.getElementById('breadcrumb');
+            const pathParts = data.currentPath.split('/').filter(part => part);
+            const displayPath = '/' + pathParts.join('/');
+            breadcrumb.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <i class="fas fa-folder-open" style="color: #667eea;"></i>
+                    <span style="font-weight: 600;">Current:</span>
+                    <span style="color: #667eea;">${displayPath}</span>
+                </div>
+            `;
+            
+            const folderList = document.getElementById('folderList');
+            
+            let html = '';
+            
+            // Add parent directory option if not at root
+            if (!data.isAtRoot && data.parent !== data.currentPath) {
+                html += `
+                    <div class="folder-item" onclick="navigateToFolder('${data.parent}')">
+                        <i class="fas fa-level-up-alt" style="color: #6c757d;"></i>
+                        <span>.. (Parent Directory)</span>
+                    </div>
+                `;
+            }
+            
+            // Add directories
+            data.items.forEach(item => {
+                const isCommonFolder = ['Desktop', 'Documents', 'Downloads', 'Projects', 'Development', 'Code'].includes(item.name);
+                const iconColor = isCommonFolder ? '#28a745' : '#ffc107';
+                
+                html += `
+                    <div class="folder-item" onclick="selectFolder('${item.path}', '${item.name}')">
+                        <i class="fas fa-folder" style="color: ${iconColor};"></i>
+                        <span>${item.name}</span>
+                        <div style="margin-left: auto; display: flex; gap: 5px;">
+                            <button class="btn btn-secondary" style="padding: 5px 10px; font-size: 12px;" onclick="event.stopPropagation(); navigateToFolder('${item.path}')">
+                                <i class="fas fa-arrow-right"></i> Open
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            if (data.items.length === 0) {
+                html += '<div style="padding: 20px; color: #6c757d; text-align: center;"><i class="fas fa-folder-open"></i><br>No accessible directories found</div>';
+            }
+            
+            folderList.innerHTML = html;
+        }
+
+        // Navigate to a folder
+        async function navigateToFolder(path) {
+            try {
+                // Show loading state
+                document.getElementById('folderList').innerHTML = 
+                    '<div style="padding: 20px; text-align: center; color: #6c757d;"><i class="fas fa-spinner fa-spin"></i> Loading...</div>';
+                
+                const response = await fetch(`/api/browse?path=${encodeURIComponent(path)}`);
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to browse directory');
+                }
+                
+                currentPath = data.currentPath;
+                updateFileBrowser(data);
+            } catch (error) {
+                document.getElementById('folderList').innerHTML = 
+                    '<div style="padding: 20px; color: #721c24;">Error: ' + error.message + '</div>';
+            }
+        }
+
+        // Select a folder for processing
+        function selectFolder(path, name) {
+            // Remove previous selection
+            document.querySelectorAll('.folder-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+            
+            // Add selection to clicked item
+            event.currentTarget.classList.add('selected');
+            
+            selectedPath = path;
+            document.getElementById('selectedPath').value = path;
+            
+            // Update breadcrumb to show selection
+            const breadcrumb = document.getElementById('breadcrumb');
+            breadcrumb.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <i class="fas fa-folder-open" style="color: #667eea;"></i>
+                    <span style="font-weight: 600;">Current:</span>
+                    <span style="color: #667eea;">${currentPath}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px; margin-top: 5px; padding: 5px 10px; background: #e3f2fd; border-radius: 5px; border-left: 3px solid #667eea;">
+                    <i class="fas fa-check-circle" style="color: #28a745;"></i>
+                    <span style="font-weight: 600; color: #28a745;">Selected:</span>
+                    <span style="color: #333;">${name}</span>
+                </div>
+            `;
+        }
+
+        // Handle filter input
+        document.getElementById('filterInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const value = this.value.trim();
+                if (value && !filters.includes(value)) {
+                    filters.push(value);
+                    updateFilterTags();
+                    this.value = '';
+                }
+            }
+        });
+
+        // Update filter tags display
+        function updateFilterTags() {
+            const container = document.getElementById('filterTags');
+            container.innerHTML = filters.map(filter => `
+                <div class="filter-tag">
+                    ${filter}
+                    <span class="remove" onclick="removeFilter('${filter}')">&times;</span>
+                </div>
+            `).join('');
+        }
+
+        // Remove a filter
+        function removeFilter(filter) {
+            filters = filters.filter(f => f !== filter);
+            updateFilterTags();
+        }
+
+        // Process the selected folder
+        async function processFolder() {
+            if (!selectedPath) {
+                alert('Please select a folder first');
+                return;
+            }
+
+            const outputName = document.getElementById('outputName').value.trim();
+            const enableOCR = document.getElementById('enableOCR').checked;
+            
+            document.getElementById('loadingSection').style.display = 'block';
+            document.getElementById('resultSection').classList.remove('show');
+            document.getElementById('processBtn').disabled = true;
+
+            try {
+                const response = await fetch('/api/process', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        folderPath: selectedPath,
+                        outputName: outputName,
+                        additionalFilters: filters,
+                        enableOCR: enableOCR
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    let resultHTML = `
+                        <div class="alert alert-success">
+                            <strong>Success!</strong> ${result.message}
+                        </div>
+                        <p><strong>Output File:</strong> ${result.outputFileName}</p>
+                        <p><strong>Total Files Processed:</strong> ${result.totalFiles}</p>
+                        <p><strong>Total Size:</strong> ${result.totalSize}</p>
+                    `;
+                    
+                    if (result.ocrStats && result.ocrStats.totalOCRFiles > 0) {
+                        resultHTML += `
+                            <div style="margin-top: 15px; padding: 15px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #2196f3;">
+                                <h4 style="margin: 0 0 10px 0; color: #1976d2;"><i class="fas fa-file-image"></i> OCR Processing Results</h4>
+                                <p><strong>OCR Files Found:</strong> ${result.ocrStats.totalOCRFiles}</p>
+                                <p><strong>Successfully Processed:</strong> ${result.ocrStats.successfulOCR}</p>
+                                <p><strong>Failed Processing:</strong> ${result.ocrStats.failedOCR}</p>
+                                <p><strong>Average Confidence:</strong> ${result.ocrStats.averageConfidence}%</p>
+                                <p><strong>Total Text Extracted:</strong> ${result.ocrStats.totalTextExtracted.toLocaleString()} characters</p>
+                            </div>
+                        `;
+                    }
+                    
+                    resultHTML += `
+                        <button class="btn btn-success" onclick="downloadFile('${result.outputFileName}')" style="margin-top: 15px;">
+                            <i class="fas fa-download"></i> Download File
+                        </button>
+                    `;
+                    
+                    document.getElementById('resultContent').innerHTML = resultHTML;
+                    document.getElementById('resultSection').classList.add('show');
+                } else {
+                    throw new Error(result.error || 'Processing failed');
+                }
+            } catch (error) {
+                document.getElementById('resultContent').innerHTML = `
+                    <div class="alert alert-error">
+                        <strong>Error!</strong> ${error.message}
+                    </div>
+                `;
+                document.getElementById('resultSection').classList.add('show');
+            } finally {
+                document.getElementById('loadingSection').style.display = 'none';
+                document.getElementById('processBtn').disabled = false;
+            }
+        }
+
+        // Download the generated file
+        function downloadFile(filename) {
+            window.location.href = `/api/download/${filename}`;
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initFileBrowser);
+    </script>
+</body>
+</html>
+
+-------- [ Separator ] ------
+
+File Name: server.js
+Size: 14.38 KB
+Code:
+const express = require('express');
+const path = require('path');
+const fs = require('fs').promises;
+const os = require('os');
+const { shouldSkipTraversal, shouldSkipContent, supportsOCR } = require('./ignore');
+const OCRService = require('./ocr');
+
+const app = express();
+const PORT = 3000;
+
+// Initialize OCR service
+let ocrService = null;
+
+async function initializeOCR() {
+  try {
+    ocrService = new OCRService();
+    console.log('OCR service initialized for web server');
+  } catch (error) {
+    console.error('Failed to initialize OCR service:', error.message);
+  }
+}
+
+// Initialize OCR on startup
+initializeOCR();
+
+// Middleware
+app.use(express.json());
+app.use(express.static('public'));
+
+// Helper function to get user-friendly starting directory
+function getStartingDirectory() {
+  // Start from user's home directory on macOS/Linux, or user profile on Windows
+  return os.homedir();
+}
+
+// API to get directory contents for browsing
+app.get('/api/browse', async (req, res) => {
+  try {
+    let dirPath = req.query.path;
+    
+    // If no path specified, start from home directory
+    if (!dirPath) {
+      dirPath = getStartingDirectory();
+    }
+
+    // Resolve the path to handle relative paths and symlinks
+    dirPath = path.resolve(dirPath);
+
+    const items = await fs.readdir(dirPath);
+    const result = [];
+
+    for (const item of items) {
+      const itemPath = path.join(dirPath, item);
+      try {
+        const stats = await fs.stat(itemPath);
+        if (stats.isDirectory()) {
+          // Skip hidden directories that start with . (except for common dev folders)
+          if (item.startsWith('.') && !['.vscode', '.git', '.github'].includes(item)) {
+            continue;
+          }
+          
+          result.push({
+            name: item,
+            type: 'directory',
+            path: itemPath
+          });
+        }
+      } catch (error) {
+        // Skip items we can't access (permission denied, etc.)
+        continue;
+      }
+    }
+
+    // Sort directories alphabetically, but put common dev folders first
+    const commonDevFolders = ['Desktop', 'Documents', 'Downloads', 'Projects', 'Development', 'Code', 'src'];
+    result.sort((a, b) => {
+      const aIsCommon = commonDevFolders.includes(a.name);
+      const bIsCommon = commonDevFolders.includes(b.name);
+      
+      if (aIsCommon && !bIsCommon) return -1;
+      if (!aIsCommon && bIsCommon) return 1;
+      
+      return a.name.localeCompare(b.name);
+    });
+
+    // Get parent directory, but don't go above root
+    const parent = path.dirname(dirPath);
+    const isAtRoot = parent === dirPath;
+
+    res.json({ 
+      currentPath: dirPath,
+      parent: isAtRoot ? dirPath : parent,
+      items: result,
+      isAtRoot
+    });
+  } catch (error) {
+    console.error('Browse error:', error);
+    res.status(500).json({ error: `Cannot access directory: ${error.message}` });
+  }
+});
+
+// API to process folder and generate text
+app.post('/api/process', async (req, res) => {
+  try {
+    const { folderPath, outputName, additionalFilters = [], enableOCR = true } = req.body;
+
+    if (!folderPath) {
+      return res.status(400).json({ error: 'Folder path is required' });
+    }
+
+    // Verify the folder exists and is accessible
+    try {
+      const stats = await fs.stat(folderPath);
+      if (!stats.isDirectory()) {
+        return res.status(400).json({ error: 'Provided path is not a directory' });
+      }
+    } catch (error) {
+      return res.status(400).json({ error: `Cannot access directory: ${error.message}` });
+    }
+
+    console.log(`Processing folder: ${folderPath}`);
+    console.log(`Additional filters: ${additionalFilters.join(', ')}`);
+
+    // Set up filters
+    const originalSkipTraversal = shouldSkipTraversal;
+    const shouldSkipTraversalWithFilters = (filepath) => {
+      if (originalSkipTraversal(filepath)) {
+        return true;
+      }
+
+      const normalizedPath = filepath.replace(/\\/g, '/');
+      return additionalFilters.some(pattern => {
+        const regexPattern = pattern.includes('/') 
+          ? pattern.replace(/\//g, '[/\\\\]') 
+          : `(^|[/\\\\])${pattern}($|[/\\\\])`;
+        
+        return new RegExp(regexPattern).test(normalizedPath);
+      });
+    };
+
+    let totalFiles = 0;
+    let totalSize = 0;
+    let fileTypes = {};
+    let technologies = new Set();
+    let ocrStats = {
+      totalOCRFiles: 0,
+      successfulOCR: 0,
+      failedOCR: 0,
+      averageConfidence: 0,
+      totalTextExtracted: 0
+    };
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(2) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(2) + ' MB';
+    }
+
+    async function generateTree(dir, prefix = '') {
+      let result = '';
+      try {
+        const items = await fs.readdir(dir);
+        
+        for (let i = 0; i < items.length; i++) {
+          const item = items[i];
+          const itemPath = path.join(dir, item);
+          
+          try {
+            const stats = await fs.stat(itemPath);
+            
+            if (shouldSkipTraversalWithFilters(itemPath)) continue;
+            
+            const isLast = i === items.length - 1;
+            const connector = isLast ? '└── ' : '├── ';
+            const newPrefix = isLast ? '    ' : '│   ';
+            
+            if (stats.isFile()) {
+              const size = formatSize(stats.size);
+              const isIncluded = !shouldSkipContent(itemPath);
+              const isOCRFile = supportsOCR(itemPath);
+              
+              let indicator = ' ✗';
+              if (isIncluded) {
+                indicator = isOCRFile ? ' 📄' : ' ✓';  // Special indicator for OCR files
+              }
+              
+              result += `${prefix}${connector}${item} (${size})${indicator}\n`;
+            } else {
+              result += `${prefix}${connector}${item}/\n`;
+              result += await generateTree(itemPath, prefix + newPrefix);
+            }
+          } catch (error) {
+            // Skip files/folders we can't access
+            console.warn(`Skipping ${itemPath}: ${error.message}`);
+            continue;
+          }
+        }
+      } catch (error) {
+        console.warn(`Cannot read directory ${dir}: ${error.message}`);
+      }
+      return result;
+    }
+
+    async function getAllFiles(dir) {
+      const fileList = [];
+      try {
+        const items = await fs.readdir(dir);
+        
+        for (const item of items) {
+          const fullPath = path.join(dir, item);
+          if (shouldSkipTraversalWithFilters(fullPath)) continue;
+          
+          try {
+            const stats = await fs.stat(fullPath);
+            
+            if (stats.isDirectory()) {
+              const subFiles = await getAllFiles(fullPath);
+              fileList.push(...subFiles);
+            } else {
+              // Track all files in stats
+              const ext = path.extname(fullPath).toLowerCase();
+              fileTypes[ext] = (fileTypes[ext] || 0) + 1;
+              
+              // Enhanced technology detection
+              if (['.ts', '.tsx'].includes(ext)) technologies.add('TypeScript');
+              if (['.jsx', '.tsx'].includes(ext)) technologies.add('React');
+              if (ext === '.vue') technologies.add('Vue.js');
+              if (ext === '.py') technologies.add('Python');
+              if (ext === '.php') technologies.add('PHP');
+              if (ext === '.java') technologies.add('Java');
+              if (ext === '.go') technologies.add('Go');
+              if (ext === '.rs') technologies.add('Rust');
+              if (ext === '.swift') technologies.add('Swift');
+              if (['.rb'].includes(ext)) technologies.add('Ruby');
+              if (['.c', '.cpp', '.cc', '.cxx'].includes(ext)) technologies.add('C/C++');
+              if (['.cs'].includes(ext)) technologies.add('C#');
+              if (['.html', '.htm'].includes(ext)) technologies.add('HTML');
+              if (['.css', '.scss', '.sass', '.less'].includes(ext)) technologies.add('CSS');
+              if (path.basename(fullPath) === 'package.json') technologies.add('Node.js');
+              if (path.basename(fullPath) === 'requirements.txt') technologies.add('Python');
+              if (path.basename(fullPath) === 'Gemfile') technologies.add('Ruby');
+              if (path.basename(fullPath) === 'composer.json') technologies.add('PHP');
+              
+              // OCR file detection
+              if (supportsOCR(fullPath)) {
+                technologies.add('OCR Processing');
+                ocrStats.totalOCRFiles++;
+              }
+              
+              totalFiles++;
+              totalSize += stats.size;
+            
+              if (!shouldSkipContent(fullPath)) {
+                fileList.push({
+                  path: fullPath,
+                  size: stats.size,
+                  extension: ext,
+                  isOCRFile: supportsOCR(fullPath)
+                });
+              }
+            }
+          } catch (error) {
+            console.warn(`Skipping ${fullPath}: ${error.message}`);
+            continue;
+          }
+        }
+      } catch (error) {
+        console.warn(`Cannot read directory ${dir}: ${error.message}`);
+      }
+      return fileList;
+    }
+
+    // Process the folder
+    console.log('Starting folder processing...');
+    const files = await getAllFiles(folderPath);
+    console.log(`Found ${files.length} files to process`);
+    
+    const treeStructure = await generateTree(folderPath);
+    console.log('Generated directory tree');
+
+    const date = new Date();
+    const dateStr = `${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}${date.getFullYear()}`;
+    const timestamp = Math.floor(date.getTime() / 1000);
+    
+    const folderName = path.basename(folderPath);
+    const outputFileName = outputName || `${folderName}_${dateStr}_${timestamp}.txt`;
+
+    let output = 'Project Overview\n===============\n\n';
+    output += `Project Statistics:\n`;
+    output += `Total Files: ${totalFiles}\n`;
+    output += `Total Size: ${formatSize(totalSize)}\n`;
+    
+    if (enableOCR && ocrStats.totalOCRFiles > 0) {
+      output += `OCR-Processed Files: ${ocrStats.totalOCRFiles}\n`;
+    }
+    output += '\n';
+    
+    output += `File Types:\n`;
+    Object.entries(fileTypes)
+      .sort(([, a], [, b]) => b - a)
+      .forEach(([ext, count]) => {
+        output += `  ${ext || 'no extension'}: ${count} files\n`;
+      });
+    
+    output += `\nDetected Technologies:\n`;
+    Array.from(technologies).sort().forEach(tech => {
+      output += `  - ${tech}\n`;
+    });
+    
+    output += '\nFolder Structure (Tree)\n=====================\n';
+    output += 'Legend: ✓ = Text file, 📄 = OCR-processed file, ✗ = Excluded from output\n\n';
+    output += treeStructure;
+    output += '\n==============\n';
+    
+    let confidenceSum = 0;
+    let ocrCount = 0;
+    
+    for (const file of files) {
+      try {
+        const relPath = path.relative(folderPath, file.path);
+        
+        if (file.isOCRFile && enableOCR && ocrService) {
+          // Process with OCR
+          console.log(`Performing OCR on: ${relPath}`);
+          const ocrResult = await ocrService.extractText(file.path);
+          const metadata = ocrService.getFileMetadata(file.path, ocrResult);
+          
+          if (ocrResult.confidence > 0) {
+            ocrStats.successfulOCR++;
+            confidenceSum += ocrResult.confidence;
+            ocrCount++;
+          } else {
+            ocrStats.failedOCR++;
+          }
+          
+          ocrStats.totalTextExtracted += ocrResult.text.length;
+          
+          output += `\nFile Name: ${relPath}\n`;
+          output += `Size: ${formatSize(file.size)}\n`;
+          output += `Processing Method: ${ocrResult.method}\n`;
+          output += `OCR Confidence: ${ocrResult.confidence}%\n`;
+          output += `Extracted Text Length: ${ocrResult.text.length} characters\n`;
+          output += `Word Count: ${metadata.wordCount} words\n`;
+          
+          if (metadata.pages) {
+            output += `Total Pages: ${metadata.pages}\n`;
+          }
+          if (metadata.processedPages) {
+            output += `Processed Pages: ${metadata.processedPages}\n`;
+          }
+          
+          output += 'Extracted Content:\n';
+          output += ocrResult.text || '[No text extracted]';
+          output += '\n-------- [ Separator ] ------\n';
+          
+        } else {
+          // Process as regular text file
+          const content = await fs.readFile(file.path, 'utf8');
+          
+          output += `\nFile Name: ${relPath}\n`;
+          output += `Size: ${formatSize(file.size)}\n`;
+          output += 'Code:\n';
+          output += content;
+          output += '\n-------- [ Separator ] ------\n';
+        }
+      } catch (error) {
+        console.error(`Error reading file ${file.path}:`, error.message);
+      }
+    }
+    
+    // Add OCR statistics to output
+    if (enableOCR && ocrStats.totalOCRFiles > 0) {
+      ocrStats.averageConfidence = ocrCount > 0 ? Math.round(confidenceSum / ocrCount) : 0;
+      
+      output += '\n\nOCR Processing Summary\n=====================\n';
+      output += `Total OCR Files: ${ocrStats.totalOCRFiles}\n`;
+      output += `Successfully Processed: ${ocrStats.successfulOCR}\n`;
+      output += `Failed Processing: ${ocrStats.failedOCR}\n`;
+      output += `Average Confidence: ${ocrStats.averageConfidence}%\n`;
+      output += `Total Text Extracted: ${formatSize(ocrStats.totalTextExtracted)} characters\n`;
+    }
+
+    // Write the output file
+    await fs.writeFile(outputFileName, output);
+
+    res.json({
+      success: true,
+      outputFileName,
+      totalFiles: files.length,
+      totalSize: formatSize(totalSize),
+      ocrStats: enableOCR ? ocrStats : null,
+      message: `Successfully processed ${files.length} files${enableOCR && ocrStats.totalOCRFiles > 0 ? ` (including ${ocrStats.totalOCRFiles} OCR files)` : ''}`
+    });
+
+  } catch (error) {
+    console.error('Processing error:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// API to download generated file
+app.get('/api/download/:filename', async (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const filePath = path.join(process.cwd(), filename);
+    
+    // Check if file exists
+    await fs.access(filePath);
+    
+    res.download(filePath, filename);
+  } catch (error) {
+    res.status(404).json({ error: 'File not found' });
+  }
+});
+
+// Serve the main HTML page
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+  console.log(`folder2text Web GUI running at http://localhost:${PORT}`);
+});
+
+-------- [ Separator ] ------

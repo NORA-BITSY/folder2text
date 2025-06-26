@@ -85,16 +85,28 @@ const skipTraversalFolders = [
   'public/mix-manifest.json'
 ];
 
+// OCR-supported file types - these will be processed with OCR instead of being skipped
+const ocrSupportedExtensions = [
+  'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'pdf'
+];
+
 const skipContentExtensions = [
-  // Images
-  'jpg', 'jpeg', 'png', 'gif', 'bmp', 'tiff', 'webp', 'svg', 'ico', 'psd', 'ai', 'eps', 'raw', 'xcf',
+  // Vector images and design files (not suitable for OCR)
+  'svg', 'ico', 'psd', 'ai', 'eps', 'raw', 'xcf',
   
   // Known binary extensions
   'exe', 'dll', 'so', 'dylib', 'bin', 'obj',
   'db', 'sqlite', 'sqlite3', 'mdb',
   'zip', 'tar', 'gz', '7z', 'rar',
-  'pdf', 'doc', 'docx', 'xls', 'xlsx',
-  'ttf', 'otf', 'woff', 'woff2'
+  
+  // Office documents (future enhancement could add OCR support)
+  'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx',
+  
+  // Fonts and other assets
+  'ttf', 'otf', 'woff', 'woff2',
+  
+  // Media files
+  'mp4', 'avi', 'mov', 'wmv', 'flv', 'mp3', 'wav', 'flac'
 ];
 
 function isBinaryFile(filePath) {
@@ -131,15 +143,27 @@ function shouldSkipContent(filepath) {
   const basename = path.basename(filepath);
   const extension = path.extname(filepath).toLowerCase().replace('.', '');
   
+  // Don't skip OCR-supported files
+  if (ocrSupportedExtensions.includes(extension)) {
+    return false;
+  }
+  
   return skipContentFiles.includes(basename) || 
          skipContentExtensions.includes(extension) || 
          isBinaryFile(filepath);
 }
 
+function supportsOCR(filepath) {
+  const extension = path.extname(filepath).toLowerCase().replace('.', '');
+  return ocrSupportedExtensions.includes(extension);
+}
+
 module.exports = { 
   shouldSkipTraversal, 
   shouldSkipContent,
+  supportsOCR,
   skipContentFiles,
   skipTraversalFolders,
-  skipContentExtensions
+  skipContentExtensions,
+  ocrSupportedExtensions
 };
